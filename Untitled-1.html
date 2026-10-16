@@ -1,0 +1,226 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Анализ влияния игр</title> 
+    <style> 
+        * { margin: 0; padding: 0; box-sizing: border-box; } 
+        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px 20px; } 
+        .container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; min-height: 100vh; } 
+        .btn-back { display: inline-flex; align-items: center; color: #818cf8; text-decoration: none; font-weight: 600; margin-bottom: 30px; transition: color 0.3s ease; width: max-content; } 
+        .btn-back:hover { color: #6366f1; } 
+        .btn-back svg { margin-right: 8px; width: 16px; height: 16px; fill: currentColor; } 
+        .catalog-header { text-align: center; margin-bottom: 40px; background-color: #1e1e1e; padding: 30px; border-radius: 6px; border: 1px solid #2d2d2d; } 
+        .catalog-header h1 { font-size: 2.2rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; } 
+        .catalog-header p { color: #cbd5e1; max-width: 800px; margin: 0 auto; line-height: 1.6; font-size: 1.05rem; } 
+        
+        .research-block {
+            background-color: #1e1e1e;
+            border: 1px solid #374151;
+            border-left: 4px solid #818cf8;
+            padding: 20px 25px;
+            border-radius: 6px;
+            margin-bottom: 40px;
+        }
+        .research-block h3 {
+            font-size: 1.2rem;
+            color: #a5b4fc;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .research-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        .research-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-section { margin-bottom: 40px; padding: 25px; border-radius: 6px; background-color: #161616; } 
+        .category-safe { border: 2px solid #10b981; } 
+        .category-hard { border: 2px solid #ef4444; } 
+        .category-title { font-size: 1.6rem; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; } 
+        .category-safe .category-title { color: #34d399; } 
+        .category-hard .category-title { color: #f87171; } 
+        .category-desc { color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px; line-height: 1.4; } 
+        
+        .catalog-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 20px; 
+        } 
+        
+        .catalog-card { background-color: #1e1e1e; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; border: 1px solid #2d2d2d; } 
+        .card-img-box { position: relative; aspect-ratio: 16 / 9; overflow: hidden; } 
+        .card-img-box img { width: 100%; height: 100%; object-fit: cover; } 
+        .card-content { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; } 
+        .card-title { font-size: 1.15rem; font-weight: bold; margin-bottom: 5px; color: #ffffff; } 
+        .card-genre { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; } 
+        .card-effect { font-size: 0.9rem; line-height: 1.4; color: #e2e8f0; padding-top: 10px; border-top: 1px solid #2d2d2d; } 
+        
+        /* Исправленные стили для текста */
+        .warning-footer {
+            background-color: #1e1e1e;
+            border: 1px solid #eab308;
+            border-left: 4px solid #eab308;
+            padding: 20px 25px;
+            border-radius: 6px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .warning-footer p {
+            color: #ffffff !important; /* Принудительно белый текст */
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left;
+        }
+        .warning-footer strong {
+            color: #facc15; /* Желтый акцент на важные слова */
+        }
+        .warning-icon {
+            font-size: 1.8rem;
+        }
+
+
+/* ВСТАВЛЯЙ СЮДА */
+.health-reminder-box {
+    background-color: #16161a;
+    border: 1px solid #3f3f46;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 20px;
+    font-family: sans-serif;
+    color: #ffffff;
+}
+.health-reminder-box h3 {
+    color: #34d399;
+    margin-top: 0;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+}
+.health-reminder-box ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+.health-reminder-box li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: #e4e4e7;
+}
+/* КОНЕЦ ВСТАВКИ */
+
+
+
+        @media (max-width: 600px) { .catalog-header h1 { font-size: 1.6rem; } .warning-footer { flex-direction: column; text-align: center; } .warning-footer p { text-align: center; } } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <a href="Untitled-2.html" class="btn-back"> 
+            <svg viewBox="0 0 24 24"> 
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/> 
+            </svg> 
+            Назад на главную 
+        </a> 
+        
+        <header class="catalog-header"> 
+            <h1>Влияние видеоигр: Вред или Польза?</h1> 
+            <p> 
+                Видеоигры бывают абсолютно разными. Одни проекты действительно требуют высокой концентрации, вызывают приток адреналина и подходят строго для взрослой аудитории. Другие же — служат инструментами для развития творческого мышления, логики, планирования бюджета и безопасного расслабления. 
+            </p> 
+        </header> 
+
+        <div class="research-block">
+            <h3>Научные данные о влиянии игр</h3>
+            <ul class="research-list">
+                <li><strong>Oxford University (Оксфорд):</strong> Исследования 2020 года доказали, что умеренная игра в видеоигры (до 2 часов в день) положительно влияет на психическое здоровье и снижает уровень тревожности.</li>
+                <li><strong>Развитие мозга:</strong> Игры с открытым миром (как Человек-Паук или Ведьмак) увеличивают объем серого вещества в гиппокампе — это часть мозга, которая отвечает за память и планирование.</li>
+            </ul>
+        </div>
+
+        <section class="category-section category-safe"> 
+            <h2 class="category-title">1. Развитие, творчество и отдых</h2> 
+            <p class="category-desc">Эти игры направлены на созидание, развитие стратегических навыков, логики и снятие эмоционального напряжения.</p> 
+            <div class="catalog-grid"> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game1.png.png" alt="Spider-Man"></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">Spider-Man</div> 
+                        <div class="card-genre">Экшен / Приключения</div> 
+                        <div class="card-effect">Развивает скорость реакции, пространственное ориентирование и мелкую моторику рук.</div> 
+                    </div> 
+                </div> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game9.png.png" alt="Cyberpunk Drive"></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">Cyberpunk Drive</div> 
+                        <div class="card-genre">Автосимулятор / Атмосфера</div> 
+                        <div class="card-effect">Помогает эффективно снять повседневный стресс за счет плавного вождения под музыку.</div> 
+                    </div> 
+                </div> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game7.png.png" alt="The Witcher 3"></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">The Witcher 3</div> 
+                        <div class="card-genre">RPG / Сюжет</div> 
+                        <div class="card-effect">Тренирует навыки принятия сложных решений, развивает фантазию и логическое мышление.</div> 
+                    </div> 
+                </div> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game8.png.png" alt="Cyberpunk 2077"></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">Cyberpunk 2077</div> 
+                        <div class="card-genre">RPG / Открытый мир</div> 
+                        <div class="card-effect">Развивает навыки стратегического планирования персонажа и решения тактических задач.</div> 
+                    </div> 
+                </div> 
+            </div> 
+        </section> 
+
+        <section class="category-section category-hard"> 
+            <h2 class="category-title">2. Динамичные игры и шутеры</h2> 
+            <p class="category-desc">Эти игры требуют высокой эмоциональной стабильности, вызывают сильный приток адреналина и подходят для зрелой психики.</p> 
+            <div class="catalog-grid"> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game3.png.png" alt="Battlefield 2042"></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">Battlefield 2042</div> 
+                        <div class="card-genre">Шутер от первого лица</div> 
+                        <div class="card-effect">Вызывает эмоциональное перенапряжение и нагрузку из-за безостановочных боевых действий.</div> 
+                    </div> 
+                </div> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game4.png.png" alt="S.T.A.L.K.E.R."></div> 
+                    <div class="card-content"> 
+                        <div class="card-title">S.T.A.L.K.E.R.</div> 
+                        <div class="card-genre">Шутер / Хоррор</div> 
+                        <div class="card-effect">Напряженная атмосфера и пугающие моменты могут перегружать нервную систему.</div> 
+                    </div> 
+                </div> 
+                <div class="catalog-card"> 
+                    <div class="card-img-box"><img src="images/game5.png.png" alt="Call of Duty"></div> 
+                    <div class="card-content"> 
+                       <div class="card-title">Metro Exodus</div> 
+                        <div class="card-genre">Шутер / Виживание </div> 
+                        <div class="card-effect">Напряженная атмосфера и пугающие моменты могут перегружать нервную систему.</div> 
+                 </div> 
+        </div>
+
+    </div>
+
+    <div class="health-reminder-box">
+        <h3>ВАЖНОЕ НАПОМИНАНИЕ О ЗДОРОВЬЕ</h3>
+        <ul>
+            <li><strong>Защита зрения:</strong> Во время игры старайтесь чаще моргать и каждые 20 минут переводить взгляд на дальние предметы.</li>
+            <li><strong>Игровой лимит:</strong> Не забывайте делать перерывы. Рекомендуется проводить за видеоиграми <strong>не более 2 часов в день</strong>.</li>
+        </ul>
+    </div>
+
+</section>

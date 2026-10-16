@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игры, которые влияют на тебя</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border: 2px solid #3b82f6;
+            border-radius: 4px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('images/hero.png.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content {
+            max-width: 450px;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-title span {
+            color: #818cf8;
+            font-weight: bold;
+        }
+
+        .hero-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .btn-catalog {
+            display: inline-flex;
+            align-items: center;
+            background-color: #4f46e5;
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-catalog:hover {
+            background-color: #4338ca;
+        }
+
+        .btn-catalog svg {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .game-card {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background-color: #1e1e1e;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .game-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 15px;
+        }
+
+        .game-card:hover .game-info {
+            opacity: 1;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 2px solid #818cf8;
+            padding-bottom: 5px;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-title {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section class="hero-banner">
+            <div class="hero-content">
+                <h1 class="hero-title">Игры, которые<br>влияют на <span>ТЕБЯ</span></h1>
+                <p class="hero-description">
+                    Мир видеоигр разнообразен: расслабляющие симуляторы снимают стресс, 
+                    динамичные шутеры дарят адреналин, а сюжетные приключения и стратегии 
+                    развивают логику и воображение.
+                </p>
+                <!-- Добавлено расширение .html -->
+                <a href="Untitled-1.html" class="btn-catalog">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2Zm-10 7H9v2H8v-2H6v-1h2V9h1v2h2v1Zm4.5 1c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5Zm3-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5Z"/>
+                    </svg>
+                    Перейти к каталогу
+                </a>
+            </div>
+        </section>
+
+        <main class="games-grid">
+            <div class="game-card">
+                <img src="images/game1.png.png" alt="Игра 1">
+                <div class="game-info">
+                    <div class="game-title">Spider-Man</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game9.png.png" alt="Игра 2">
+                <div class="game-info">
+                    <div class="game-title">Cyberpunk Drive</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game3.png.png" alt="Игра 3">
+                <div class="game-info">
+                    <div class="game-title">Battlefield 2042</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game4.png.png" alt="Игра 4">
+                <div class="game-info">
+                    <div class="game-title">S.T.A.L.K.E.R.</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game5.png.png" alt="Игра 5">
+                <div class="game-info">
+                    <div class="game-title">Call of Duty</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game6.png.png" alt="Игра 6">
+                <div class="game-info">
+                    <div class="game-title">Metro Exodus</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game7.png.png" alt="Игра 7">
+                <div class="game-info">
+                    <div class="game-title">The Witcher 3</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="images/game8.png.png" alt="Игра 8">
+                <div class="game-info">
+                    <div class="game-title">Cyberpunk 2077</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
